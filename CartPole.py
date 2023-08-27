@@ -44,8 +44,8 @@ def trainAndSaveModel():
     model.save(PPO_path)
 
 # Function to evaluate Model
-def evalModel():
-    evaluate_policy(model, env, n_eval_episodes=10, render=True)
+def evalModel(model):
+    print(evaluate_policy(model, env, n_eval_episodes=2, render=True))
 
     # Test Model
     obs = env.reset()
@@ -69,7 +69,10 @@ model = PPO.load(PPO_path, env=env)
 #runModel(7)
 
 # Evaluate the Model
-#evalModel()
+#evalModel(model)
 
 # Debugging Tests
-#evaluate_policy(model, env, n_eval_episodes=10, render=True)
+obs = env.reset()
+#result = model.predict(obs)
+action, _states = model.predict(obs)
+#print (model.predict(obs))
