@@ -18,7 +18,10 @@ https://gymnasium.farama.org/environments/classic_control/cart_pole/
 - pip install seaborn
 - pip install scipy
 - pip install sklearn
-- pip install tqdm
 - pip install pygame
 - pip install gymnasium
 - pip install stable_baselines3
+- pip install tqdm
+- pip install collection
+- pip install --upgrade gym
+- pip install --upgrade pygame
