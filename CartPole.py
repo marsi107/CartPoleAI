@@ -8,9 +8,12 @@ from stable_baselines3 import PPO
 from stable_baselines3.common.vec_env import DummyVecEnv
 from stable_baselines3.common.evaluation import evaluate_policy
 
-# Load Model
+# Load Environment
 envName = 'CartPole-v1'
 env = gym.make(envName, render_mode='human')
+
+# Set model path
+PPO_path = os.path.join('Saved_Models', 'PPO_model1K')
 
 # Function to run the model
 def runModel(episodes=5):
@@ -28,16 +31,10 @@ def runModel(episodes=5):
         print('Episode:{} Score:{}'.format(episode, score))
     env.close()
 
-# Run the Model
-#runModel(7)
-
-# Set model path
-PPO_path = os.path.join('Saved_Models', 'PPO_model1K')
-
-# Train Model
+# Function to train the model
 def trainAndSaveModel():
     # Train Model
-    env = DummyVecEnv([lambda: env])
+    #env = DummyVecEnv([lambda: env])
     model = PPO('MlpPolicy', env, verbose = 1)
     model.learn(total_timesteps=1000)
     
@@ -45,5 +42,29 @@ def trainAndSaveModel():
     print(PPO_path)
     model.save(PPO_path)
 
+# Function to evaluate Model
+def evalModel():
+    evaluate_policy(model, env, n_eval_episodes=10, render=True)
+
+    # Test Model
+    obs = env.reset()
+    while True:
+        action, _states = model.predict(obs)
+        obs, rewards, done, truncated, info = env.step(action)
+        env.render()
+        if done: 
+            print('info', info)
+            break
+    env.close()
+
+# Disclaimer: comment and uncomment the functions depending on the actions needed
+
+#Load Model
 model = PPO.load(PPO_path, env=env)
-runModel(7)
+
+# Run the Model
+#runModel(7)
+
+# Evaluate the Model
+#evalModel()
+#evaluate_policy(model, env, n_eval_episodes=10, render=True)
