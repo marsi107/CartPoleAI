@@ -8,12 +8,13 @@ from stable_baselines3 import PPO
 from stable_baselines3.common.vec_env import DummyVecEnv
 from stable_baselines3.common.evaluation import evaluate_policy
 
-# Load Environment
+# Set Variables
 envName = 'CartPole-v1'
-env = gym.make(envName, render_mode='human')
-
 # Set model path
 PPO_path = os.path.join('Saved_Models', 'PPO_model1K')
+
+# Load Environment
+env = gym.make(envName, render_mode='human')
 
 # Function to run the model
 def runModel(episodes=5):
@@ -31,7 +32,7 @@ def runModel(episodes=5):
         print('Episode:{} Score:{}'.format(episode, score))
     env.close()
 
-# Function to train the model
+# Function to train and save the model
 def trainAndSaveModel():
     # Train Model
     #env = DummyVecEnv([lambda: env])
@@ -59,6 +60,8 @@ def evalModel():
 
 # Disclaimer: comment and uncomment the functions depending on the actions needed
 
+#trainAndSaveModel()
+
 #Load Model
 model = PPO.load(PPO_path, env=env)
 
@@ -67,4 +70,6 @@ model = PPO.load(PPO_path, env=env)
 
 # Evaluate the Model
 #evalModel()
+
+# Debugging Tests
 #evaluate_policy(model, env, n_eval_episodes=10, render=True)
