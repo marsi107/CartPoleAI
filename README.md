@@ -9,7 +9,7 @@ https://gymnasium.farama.org/environments/classic_control/cart_pole/
 - Add python to path and scripts folder aswell
 - Update pip with --> python.exe -m pip install --upgrade pip
 - python.exe -m pip install virtualenv
-- python.exe -m pip install jupyter
+- python3 -m pip install jupyter
 
 #### pips
 - pip install numpy
