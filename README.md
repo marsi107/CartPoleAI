@@ -25,3 +25,6 @@ https://gymnasium.farama.org/environments/classic_control/cart_pole/
 - pip install collection
 - pip install --upgrade gym
 - pip install --upgrade pygame
+
+## Other Documentations
+https://stable-baselines3.readthedocs.io/en/master/modules/ppo.html
